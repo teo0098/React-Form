@@ -26,3 +26,12 @@
   position: relative;
   min-width: 30vw;
 }
+
+.App__Form {
+  display: grid;
+  gap: 3vh;
+  background-color: #E9EBE2;
+  border-bottom-left-radius: 0.5vh;
+  border-bottom-right-radius: 0.5vh;
+  padding: 5vh 3vw;
+}

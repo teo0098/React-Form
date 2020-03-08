@@ -32,7 +32,7 @@ const reducer = (state, action) => {
                 gender: { value: 'female' },
                 nameError: { value: '' },
                 lastnameError: { value: '' }
-            }
+            };
         default:
             return {
                 ...state,
