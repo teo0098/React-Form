@@ -1,3 +1,28 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .App {
+  margin: 6vh;
+  box-shadow: 0 0 1vw 0 black;
+}
+
+.App__header {
+  background-color: #c2185b;
   text-align: center;
+  border-top-left-radius: 0.5vh;
+  border-top-right-radius: 0.5vh;
+  width: 100%;
+}
+
+.App__h2 {
+  text-align: center;
+  padding: 3vh;
+}
+
+.App__section {
+  position: relative;
+  min-width: 30vw;
 }
