@@ -5,8 +5,10 @@ import reducer from './Reducer/Reducer';
 import initialState from './Reducer/InitialState';
 import validator from 'validator';
 import Alert from '@material-ui/lab/Alert';
+import mapDispatchToProps from '../store/globalAction';
+import { connect } from 'react-redux';
 
-const Form2 = () => {
+const Form2 = props => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const validateCredentials = (type, pattern) => {
@@ -41,7 +43,13 @@ const Form2 = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (validateData()) console.log('DONE');
+        if (validateData()) {
+            props.setForm2({
+                email: state.email.value,
+                password: state.pass.value
+            });
+            props.goNext();
+        }
     }
 
     return (
@@ -62,9 +70,9 @@ const Form2 = () => {
             {state.rpassError.value !== '' ? <Alert severity="error">{state.rpassError.value}</Alert> : null}
 
             <Button type="submit" variant="contained" color="primary">Next step</Button>
-            <Button variant="contained" color="secondary">Previous step</Button>
+            <Button onClick={props.goPrev} variant="contained" color="secondary">Previous step</Button>
         </form>
     );
 };
 
-export default Form2;
+export default connect(null, mapDispatchToProps)(Form2);

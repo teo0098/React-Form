@@ -25,6 +25,14 @@ const reducer = (state, action) => {
                 ...state,
                 checkbox2Error: { value: 'This field is required' }
             };
+        case 'CLEAR':
+            return {
+                checkbox1: { value: 'TERMS', checked: false },
+                checkbox2: { value: 'PROCESS', checked: false },
+                checkbox3: { value: 'UPDATE', checked: false },
+                checkbox1Error: { value: '' },
+                checkbox2Error: { value: '' }
+            };
         default:
             return {
                 ...state,

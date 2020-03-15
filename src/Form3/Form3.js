@@ -5,8 +5,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import reducer from './Reducer/Reducer';
 import initialState from './Reducer/InitialState';
 import Alert from '@material-ui/lab/Alert';
+import { connect } from 'react-redux';
+import mapDispatchToProps from '../store/globalAction';
 
-const Form3 = () => {
+const Form3 = props => {
     const [state, dispatch] = useReducer(reducer, initialState);    
 
     const validateCredentials = (name, type, checked) => {
@@ -39,7 +41,13 @@ const Form3 = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (validateData()) console.log("DONE");
+        if (validateData()) {
+            props.setForm3({
+                agreement: state.checkbox1.value,
+                processing: state.checkbox2.value,
+                updating: state.checkbox3.value
+            });
+        }
     }
 
     return (
@@ -66,9 +74,9 @@ const Form3 = () => {
             label="I want to have emails sent to me about any updates"
             />
             <Button type="submit" variant="contained" color="primary">Sign me up</Button>
-            <Button variant="contained" color="secondary">Previous step</Button>
+            <Button onClick={props.goPrev} variant="contained" color="secondary">Previous step</Button>
         </form>
     );
 };
 
-export default Form3;
+export default connect(null, mapDispatchToProps)(Form3);

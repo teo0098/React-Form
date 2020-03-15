@@ -7,8 +7,10 @@ import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import initialState from './Reducer/InitialState';
 import reducer from './Reducer/Reducer';
+import mapDispatchToProps from '../store/globalAction';
+import { connect } from 'react-redux';
 
-const Form1 = () => {
+const Form1 = props => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const validateCredentials = (type, pattern) => {
@@ -41,17 +43,24 @@ const Form1 = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (validateData()) console.log('DONE');
+        if (validateData()) {
+            props.setForm1({
+                name: state.name.value,
+                lastname: state.lastname.value,
+                gender: state.gender.value
+            });
+            props.goNext();
+        }
     }
 
     return (
-        <form onSubmit={handleSubmit} className="App__Form" autoComplete="off" noValidate>
-            <TextField name="name" id="filled-basic" label="Name" variant="filled" value={state.name.value} 
+        <form onSubmit={handleSubmit} className="App__Form App__From--1" autoComplete="off" noValidate>
+            <TextField name="name" label="Name" variant="filled" value={state.name.value} 
             onChange={e => changeValue(e.target)} />
     
             {state.nameError.value !== '' ? <Alert severity="error">{state.nameError.value}</Alert> : null}
     
-            <TextField name="lastname" id="filled-basic" label="Last name" variant="filled" value={state.lastname.value}
+            <TextField name="lastname" label="Last name" variant="filled" value={state.lastname.value}
             onChange={e => changeValue(e.target)} />
     
             {state.lastnameError.value !== '' ? <Alert severity="error">{state.lastnameError.value}</Alert> : null}
@@ -67,4 +76,4 @@ const Form1 = () => {
     ) 
 }
 
-export default Form1;
+export default connect(null, mapDispatchToProps)(Form1);

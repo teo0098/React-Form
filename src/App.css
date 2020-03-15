@@ -23,8 +23,8 @@
 }
 
 .App__section {
+  min-width: 30vw;
   position: relative;
-  width: 30vw;
 }
 
 .App__Form {
@@ -34,4 +34,17 @@
   border-bottom-left-radius: 0.5vh;
   border-bottom-right-radius: 0.5vh;
   padding: 5vh 3vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.App__From--1 {
+  z-index: 300;
+}
+
+.animation {
+  position: relative;
+  min-width: 30vw;
 }
