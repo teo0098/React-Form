@@ -2,6 +2,7 @@
 <p>Animated form with 3 steps to achieve created account.</p>
 <p>Technologies:</p>
 <ul>
+  <li>CSS</li>
   <li>React</li>
   <li>Redux</li>
   <li>useReducer hook</li>
